@@ -1,0 +1,51 @@
+# Changelog
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [2.0] - 13-02-2025
+### Added:
+- oswalk function
+### Changed:
+- using the os.walk command instead of os.listdir
+- documentation improvements whit more english language
+- improvements in the code
+- modification of some functions name
+### Removed:
+- lista_file_py function
+- elenca_e_conta_py function
+
+## [1.3] - 06-02-2025
+### Added:
+Implementation of new features like:
+- check for the existence of py files
+- calculating the total number of Python files
+- requirements.txt for the list of libraries to install
+### Changed:
+- documentation improvements
+- improvements in the code
+- names of some variables
+### Removed:
+Nothing
+
+## [1.2] - 30-01-2025
+### Added:
+Argument existence checker
+Implementation of new features like:
+- operating system control check
+- check for the existence of the folder passed as argument
+### Changed:
+- documentation improvements
+- improvements in the code
+### Removed:
+Nothing
+
+## [1.1] - 23-01-2025
+### Added:
+- creation of the package structure
+- creation of the browseos.py file
+### Changed:
+Nothing
+### Removed:
+Nothing
