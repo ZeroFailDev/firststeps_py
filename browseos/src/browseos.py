@@ -1,13 +1,13 @@
 """
-Questo programma implementa un'operazione.
+This program implements an operation.
 
-Simile al comando 'dir' della command line.
+Similar to the command line 'dir' command.
 
-Per elencare i file .py presenti nel path.
+To list the .extension files present in the path.
 
-Utilizza le librerie os, sys, platform.
+Uses os, sys, platform libraries.
 
-comune e icecream.
+comune and icecream.
 
 Ivan Granata 3HI.
 """
@@ -15,69 +15,117 @@ Ivan Granata 3HI.
 import os
 import sys
 import platform
-import comune
+import time
 from icecream import ic
+
+import comune
 
 
 def set_default_path():
-    """Imposta un percorso di default in base al sistema operativo."""
+    """Set a default path based on your operating system."""
     sistema = platform.system()
     if sistema in ("Windows", "Linux", "Darwin"):  # Darwin è per macOS
         return "." if sistema == "Windows" else "/etc"
     else:
-        comune.visualizza_messaggio("Sistema operativo non supportato.")
+        comune.visualizza_messaggio("Operating system not supported.")
         return None
 
 
 def path_esiste(path):
-    """Verifica se la directory esiste ed è accessibile in lettura."""
+    """Check if the directory exists and is readable."""
     return os.path.exists(path) and os.access(path, os.R_OK)
 
 
-def oswalk(path):
+def set_extension():
     """
-    Elenca i file nella directory specificata, insieme al loro path.
+    This function is used for setting.
 
-    Crea due liste: una con i file .py e una con tutti i file.
+    the extension to be set.
+
+    as default.
     """
-    files_py = []
+    if len(sys.argv) > 2:
+        extension = sys.argv[2]
+    else:
+        extension = ".py"
+    return extension
+
+
+def oswalk(path, extension):
+    """
+    Lists the files in the specified directory, along with their path.
+
+    Create two lists: one with .extension files and one with all files.
+    """
+    files_extension = []
     all_files = []
-    contatore_filepy = 0
     for root, _, files in os.walk(path):
-        # root: la directory corrente che è stata esplorata.
-        # _: segnaposto per la lista di sottodirectory
-        # files: lista dei file nella root
         for file in files:
             file_name = os.path.join(root, file)
-            if file.endswith(".py"):
-                files_py.append(file_name)
-                contatore_filepy += 1
+            if file.endswith(extension):
+                files_extension.append(file_name)
             all_files.append(file_name)
-    if files_py:
-        definitive_list = files_py
-        definitive_list.append(contatore_filepy)  # numero file py
-
+    if files_extension:
+        definitive_list = files_extension
     else:
         definitive_list = all_files
-        definitive_list.append(contatore_filepy)  # aggiungo alla lista il numero di file py
     return definitive_list
 
 
+def count_files(path, extension):
+    """
+    It counts all the files it finds.
+
+    If it finds file extension it returns the number of those.
+    """
+    files_number = 0
+    for root, _, files in os.walk(path):
+        for file in files:
+            if file.endswith(extension):
+                files_number += 1
+    return files_number
+
+
+def log(date, msg):
+    """
+    Function to collect.
+
+    the data for the tracelog.
+    """
+    tracelog_path = "../log/trace.log"
+    with open(tracelog_path, mode="a") as tracelog:  # a = append
+        tracelog.write(f"{date}; {msg}\n")
+
+
 if __name__ == "__main__":
+    startime = time.time()
+    msg = "Start program"
+    log(startime, msg)
+
     print(f"Operative system: {platform.system()}")
 
-    if comune.check_argv(2):
+    if len(sys.argv) > 1:
         path = sys.argv[1]
     else:
         path = set_default_path()
 
     if not path_esiste(path):
-        ic(f"Error: the Dir '{path}' doesn't exist or you have access denied")
+        print(f"Error: the Dir '{path}' doesn't exist or you can't acces")
     else:
-        definitive_list = oswalk(path)
+        extension = set_extension()
+        definitive_list = oswalk(path, extension)
+        files_number = count_files(path, extension)
         print("Files found:")
-        for file in definitive_list[:-1]:  # tranne l'ultimo elemento
+        for file in definitive_list:
             ic("_________________________________________________________")
             print(file)
             ic("_________________________________________________________")
-        print(f"In Dir '{path}' there are '{definitive_list[-1]}' file .py")
+
+        msg = f"In Dir '{path}' there are '{files_number}' file {extension}"
+        ic(msg)
+
+    finishtime = time.time()
+    msg = "Finish program"
+    log(finishtime, msg)
+    msg = f"The program execution time is {finishtime - startime}"
+    ic(msg)

@@ -1,5 +1,5 @@
 """
-Questo programma è da implementare come libreria.
+This program is to be implemented as a library.
 
 Ivan Granata 3HI.
 """
@@ -15,12 +15,12 @@ def visualizza_messaggio(msg):
 
 def check_argv(numero_argomenti):
     """
-        Controlla se il numero di argomenti passati da linea.
+        Checks whether the number of arguments passed by line.
 
-        comando è corretto.
+        are correct.
     return:
-        True se il numero di argomenti passati da linea.
-        comando è uguale a numero_argomenti.
+        True if the number of arguments passed by line.
+        command is equal to number_of arguments.
     """
     is_correct = False
     if len(sys.argv) == numero_argomenti:

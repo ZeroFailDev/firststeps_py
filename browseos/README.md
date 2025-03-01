@@ -14,16 +14,16 @@
 
 `BrowseOs` è un pacchetto Python che utilizza il modulo `comune.py` come libreria all'interno del programma principale `browseos.py`. 
 
-Quando eseguito, il programma `browseos.py` esegue i seguenti controlli:
-1. Mostra il sistema operativo in uso.
-2. Verifica se la directory inserita esiste.
-3. Controlla i permessi di lettura per la directory indicata.
+`browseos.py` elenca i file con un'estensione specificata (di default `.py`) all'interno di una cartella. Simile al comando `dir` della linea di comando, il programma usa le librerie `os`, `sys`, `platform`, `comune` e `icecream` per:
 
-Dopodiché `browseos.py` cerca la presenza di file `.py` all'interno della directory e sottodirectory e li elenca insieme al loro intero percorso.
+1. Verificare se il sistema operativo è supportato (Windows, Linux o macOS).
+2. Verificare se la directory indicata esiste e può essere letta.
+3. Elencare tutti i file con l'estensione specificata (o `.py` se non ne viene fornita una).
+4. Mostrare il numero di file trovati con l'estensione desiderata.
 
-Al termine, mostra anche il numero totale di file Python trovati nella directory specificata.
+Al termine, mostra anche il numero totale di file `.extension` trovati nella directory specificata.
 
-Se il programma non trova file `.py` visualizza tutti gli altri file con il loro intero percorso.
+Se il programma non trova file `.extension` visualizza tutti gli altri file con il loro intero percorso.
 
 ## Requisiti
 
@@ -39,10 +39,10 @@ Per eseguire il progetto, segui questi passaggi:
 1. Assicurati che tutti i **requisiti** siano soddisfatti.
 2. Apri il **prompt dei comandi** di Windows o di Linux.
 3. **Naviga alla cartella** contenente il file `browseos.py`.
-4. - Esegui il file scrivendo per esempio `python.exe browseos.py C:\users\12345` sul prompt dei comandi di Windows per visualizzare l'elenco dei file python all'interno della directory `C:\users\12345`.
+4. - Esegui il file scrivendo `python.exe browseos.py C:\users\12345` sul prompt dei comandi di Windows per visualizzare l'elenco dei file python all'interno della directory `C:\users\12345`.
 
 
-   - Esegui il file scrivendo per esempio `$ python3 browseos.py` sul prompt dei comandi  di Linux per visualizzare l'elenco dei file python all'interno della directory nella quale ci si trova al momento.
+   - Esegui il file scrivendo `$ python3 browseos.py` sul prompt dei comandi  di Linux per visualizzare l'elenco dei file python all'interno della directory nella quale ci si trova al momento.
 
 ### Esempio di input:
 ...\browseos\src>`python.exe browseos.py`
@@ -51,11 +51,14 @@ Per eseguire il progetto, segui questi passaggi:
    ```
    Operative system: Windows
 Files found:
+ic| '_________________________________________________________'
 .\browseos.py
+ic| '_________________________________________________________'
 ic| '_________________________________________________________'
 .\comune.py
 ic| '_________________________________________________________'
-In Dir '.' there are '2' file .py
+ic| msg: "In Dir '.' there are '2' file .py"
+ic| msg: 'The program execution time is 0.n'
    ```
 
 ## Tags
