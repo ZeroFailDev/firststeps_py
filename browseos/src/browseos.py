@@ -38,11 +38,9 @@ def path_esiste(path):
 
 def set_extension():
     """
-    This function is used for setting.
+    Set the extension to be used.
 
-    the extension to be set.
-
-    as default.
+    Default is .py unless specified otherwise.
     """
     if len(sys.argv) > 2:
         extension = sys.argv[2]
@@ -53,7 +51,7 @@ def set_extension():
 
 def oswalk(path, extension):
     """
-    Lists the files in the specified directory, along with their path.
+    List the files in the specified directory, along with their path.
 
     Create two lists: one with .extension files and one with all files.
     """
@@ -74,7 +72,7 @@ def oswalk(path, extension):
 
 def count_files(path, extension):
     """
-    It counts all the files it finds.
+    Count all the files it finds.
 
     If it finds file extension it returns the number of those.
     """
@@ -87,11 +85,7 @@ def count_files(path, extension):
 
 
 def log(date, msg):
-    """
-    Function to collect.
-
-    the data for the tracelog.
-    """
+    """Write the data in the tracelog."""
     tracelog_path = "../log/trace.log"
     with open(tracelog_path, mode="a") as tracelog:  # a = append
         tracelog.write(f"{date}; {msg}\n")
@@ -110,7 +104,7 @@ if __name__ == "__main__":
         path = set_default_path()
 
     if not path_esiste(path):
-        print(f"Error: the Dir '{path}' doesn't exist or you can't acces")
+        print(f"Error: the Dir '{path}' doesn't exist or you can't acces it")
     else:
         extension = set_extension()
         definitive_list = oswalk(path, extension)
